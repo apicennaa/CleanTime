@@ -33,9 +33,9 @@ class ServicesController extends Controller
     {
         // Validasi data input
         $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string|max:1000',
-            'harga' => 'required|numeric|min:0',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric|min:0',
         ]);
 
         // Simpan layanan baru
@@ -74,9 +74,9 @@ class ServicesController extends Controller
 
         // Validasi data input
         $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string|max:1000',
-            'harga' => 'required|numeric|min:0',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric|min:0',
         ]);
 
         // Update data layanan
