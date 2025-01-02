@@ -15,7 +15,7 @@
                 <p class="text-gray-600 mb-8 max-w-lg">
                     Simplifying Cleanliness for Homes and Offices, Bringing Comfort, Trust, and Ease to Your Everyday Life
                 </p>
-                <a href="#" class="lets-talk-btn bg-cyan-500 text-white px-6 py-3 rounded-full inline-flex items-center space-x-2 hover:bg-cyan-600">
+                <a href="{{ route('login') }}" class="lets-talk-btn bg-cyan-500 text-white px-6 py-3 rounded-full inline-flex items-center space-x-2 hover:bg-cyan-600">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
                     </svg>
@@ -76,12 +76,12 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="md:w-1/3">
-                <img src="{{ asset('image/promotion.jpg') }}" alt="Promotion" class="w-full h-full object-cover">
+                <img src="{{ asset('image/promotion.png') }}" alt="Promotion" class="w-full h-full object-cover">
             </div>
             <div class="md:w-2/3 p-8">
                 <h2 class="text-3xl font-bold mb-4">15% Off For Our New Clients</h2>
                 <p class="text-gray-600 mb-6">Book your first cleaning service with us today and receive a special discount!</p>
-                <a href="#" class="bg-cyan-500 text-white px-8 py-3 rounded-md hover:bg-cyan-600 inline-block">
+                <a href="{{ route('login') }}" class="bg-cyan-500 text-white px-8 py-3 rounded-md hover:bg-cyan-600 inline-block">
                     Book Now
                 </a>
             </div>

@@ -74,10 +74,9 @@
                     <!-- Navigation Links -->
                     <div class="flex items-center space-x-8">
                         <a href="#" class="nav-item text-black font-bold hover:text-cyan-500">Home</a>
-                        <a href="#" class="nav-item text-gray-600 hover:text-cyan-500">About Us</a>
                         <a href="#" class="nav-item text-gray-600 hover:text-cyan-500">Services</a>
-                        <a href="#" class="nav-item text-gray-600 hover:text-cyan-500">Pricing</a>
-                        <a href="#" class="nav-item text-gray-600 hover:text-cyan-500">Contact</a>
+                        <a href="#" class="nav-item text-gray-600 hover:text-cyan-500">Promotion</a>
+                        <a href="#" class="nav-item text-gray-600 hover:text-cyan-500">Testimonials</a>
 
                         <!-- Login & Register Buttons -->
                         <div class="flex space-x-4">
@@ -114,7 +113,6 @@
                     <div>
                         <h3 class="text-xl font-bold mb-4">Quick Links</h3>
                         <ul class="space-y-2">
-                            <li><a href="#" class="hover:text-cyan-500">About Us</a></li>
                             <li><a href="#" class="hover:text-cyan-500">Services</a></li>
                             <li><a href="#" class="hover:text-cyan-500">Book Now</a></li>
                         </ul>
