@@ -1,166 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ config('app.name', 'CleanTime') }}</title>
-
-    {{-- Bootstrap CSS --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    {{-- Bootstrap Icons --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-
-    {{-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <title>@yield('title', 'CleanTime - Professional Cleaning Services')</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f6f9;
-        }
-
-        .sidebar {
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-        }
-
-        .content-wrapper {
-            margin-left: 250px;
-            transition: margin-left 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 1050;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
             }
 
-            .content-wrapper {
-                margin-left: 0;
-            }
-
-            .sidebar.show {
-                transform: translateX(0);
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        .sidebar-link {
-            color: rgba(255,255,255,0.7);
+        .nav-item {
             transition: all 0.3s ease;
         }
 
-        .sidebar-link:hover {
-            color: white;
-            background-color: rgba(255,255,255,0.1);
+        .nav-item:hover {
+            transform: translateY(-2px);
         }
 
-        .navbar {
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        .logo-hover {
+            transition: all 0.3s ease;
         }
 
-        .dropdown-menu {
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        .logo-hover:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-transition {
+            transition: all 0.3s ease;
+        }
+
+        .btn-transition:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        img.h-8 {
+            max-width: 100%;
+            height: 50px;
+            width: 150px;
+            object-fit: cover;
+        }
+
+        .h-8 {
+            max-block-size: max-content;
         }
     </style>
-</head>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            {{-- Sidebar --}}
-            <div class="col-md-3 col-lg-2 sidebar d-md-block bg-dark p-0" id="sidebar">
-                <div class="position-sticky">
-                    <div class="d-flex flex-column">
-                        <a href="{{ route('dashboard') }}" class="text-center text-white text-decoration-none p-4 border-bottom">
-                            <h2 class="mb-0">CleanTime</h2>
-                        </a>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.0/dist/sweetalert2.all.min.js"></script>
 
-                        <ul class="nav flex-column p-2">
-                            <li class="nav-item">
-                                <a class="nav-link sidebar-link d-flex align-items-center" href="{{ route('dashboard') }}">
-                                    <i class="bi bi-speedometer2 me-2"></i> Dashboard
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link sidebar-link d-flex align-items-center" href="{{ route('cleaners.index') }}">
-                                    <i class="bi bi-people me-2"></i> Cleaners
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link sidebar-link d-flex align-items-center" href="{{ route('orders.index') }}">
-                                    <i class="bi bi-list-task me-2"></i> Orders
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link sidebar-link d-flex align-items-center" href="{{ route('services.index') }}">
-                                    <i class="bi bi-tools me-2"></i> Services
-                                </a>
-                            </li>
-                        </ul>
+</head>
+
+<body class="bg-gradient-to-r from-cyan-50 to-white">
+    @if (!isset($hideNavbar) || !$hideNavbar)
+        <!-- Navigation -->
+        <nav class="pt-4 px-8">
+            <div class="container mx-auto">
+                <div class="flex justify-between items-center">
+                    <!-- Logo -->
+                    <div class="flex items-center logo-hover">
+                        <img src="{{ asset('images/logo.svg') }}" alt="CleanTime Logo" class="h-8">
+                        {{-- <span class="text-cyan-500 text-2xl font-semibold ml-2">CleanTime</span> --}}
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <div class="flex items-center space-x-8">
+                        <a href="#" class="nav-item text-black font-bold hover:text-cyan-500">Home</a>
+                        <a href="#" class="nav-item text-gray-600 hover:text-cyan-500">About Us</a>
+                        <a href="#" class="nav-item text-gray-600 hover:text-cyan-500">Services</a>
+                        <a href="#" class="nav-item text-gray-600 hover:text-cyan-500">Pricing</a>
+                        <a href="#" class="nav-item text-gray-600 hover:text-cyan-500">Contact</a>
+
+                        <!-- Login & Register Buttons -->
+                        <div class="flex space-x-4">
+                            <a href="{{ route('login') }}"
+                                class="btn-transition bg-cyan-500 text-white px-6 py-3 rounded-full hover:bg-cyan-600">
+                                Login
+                            </a>
+                            <a href="{{ route('register') }}"
+                                class="btn-transition bg-gray-100 text-cyan-500 px-6 py-3 rounded-full hover:bg-gray-200 border border-cyan-500">
+                                Register
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </nav>
+    @endif
 
-            {{-- Main Content --}}
-            <div class="col-md-9 ms-sm-auto col-lg-10 content-wrapper px-4">
-                {{-- Navbar --}}
-                <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-                    <div class="container-fluid">
-                        {{-- Mobile Toggle --}}
-                        <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+    <!-- Main Content -->
+    <main>
+        @yield('content')
+    </main>
 
-                        <div class="d-flex justify-content-between w-100 align-items-center">
-                            <h1 class="h4 mb-0 d-none d-md-block">@yield('page_title', 'Dashboard')</h1>
-
-                            {{-- User Dropdown --}}
-                            <div class="dropdown">
-                                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ auth()->user()->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) }}" 
-                                         class="rounded-circle me-2" width="32" height="32">
-                                    <span class="d-none d-md-block">{{ auth()->user()->name }}</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person me-2"></i>Profile</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <form method="POST" action="{{ route('logout') }}" class="m-0">
-                                            @csrf
-                                            <button type="submit" class="dropdown-item">
-                                                <i class="bi bi-box-arrow-right me-2"></i>Logout
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
+    <!-- Footer -->
+    @if (!isset($hideFooter) || !$hideFooter)
+        <footer class="bg-gray-900 text-white">
+            <div class="container mx-auto px-4 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                        <p>Email: info@cleantime.com</p>
+                        <p>Phone: +1-234-567-8900</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-cyan-500">About Us</a></li>
+                            <li><a href="#" class="hover:text-cyan-500">Services</a></li>
+                            <li><a href="#" class="hover:text-cyan-500">Book Now</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="hover:text-cyan-500"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="hover:text-cyan-500"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="hover:text-cyan-500"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
-                </nav>
-
-                {{-- Content Area --}}
-                <main class="py-4">
-                    @yield('content')
-                </main>
-
-                {{-- Footer --}}
-                <footer class="mt-4 py-3 text-center">
-                    <p class="text-muted mb-0">
-                        &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
-                    </p>
-                </footer>
+                </div>
+                <div class="mt-8 text-center">
+                    <p>&copy; {{ date('Y') }} CleanTime. Kelompok 2.</p>
+                </div>
             </div>
-        </div>
-    </div>
-
-    {{-- Bootstrap JS --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        </footer>
+    @endif
 </body>
+
 </html>

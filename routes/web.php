@@ -1,44 +1,95 @@
 <?php
 
-use App\Http\Controllers\CleanersController;
-use App\Http\Controllers\OrdersController;
-use App\Http\Controllers\ServicesController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CleanerController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cleaners', [CleanersController::class, 'index'])->name('cleaners.index');
-Route::get('/cleaners/create', [CleanersController::class, 'create'])->name('cleaners.create');
-Route::post('/cleaners', [CleanersController::class, 'store'])->name('cleaners.store');
-Route::get('/cleaners/{cleaners}', [CleanersController::class, 'show'])->name('cleaners.show');
-Route::get('/cleaners/{cleaners}/edit', [CleanersController::class, 'edit'])->name('cleaners.edit');
-Route::put('/cleaners/{cleaners}', [CleanersController::class, 'update'])->name('cleaners.update');
-Route::delete('/cleaners/{cleaners}', [CleanersController::class, 'destroy'])->name('cleaners.destroy');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index');
-Route::get('/orders/create', [OrdersController::class, 'create'])->name('orders.create');
-Route::post('/orders', [OrdersController::class, 'store'])->name('orders.store');
-Route::get('/orders/{orders}', [OrdersController::class, 'show'])->name('orders.show');
-Route::get('/orders/{orders}/edit', [OrdersController::class, 'edit'])->name('orders.edit');
-Route::put('/orders/{orders}', [OrdersController::class, 'update'])->name('orders.update');
-Route::delete('/orders/{orders}', [OrdersController::class, 'destroy'])->name('orders.destroy');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/services', [ServicesController::class, 'index'])->name('services.index');
-Route::get('/services/create', [ServicesController::class, 'create'])->name('services.create');
-Route::post('/services', [ServicesController::class, 'store'])->name('services.store');
-Route::get('/services/{services}', [ServicesController::class, 'show'])->name('services.show');
-Route::get('/services/{services}/edit', [ServicesController::class, 'edit'])->name('services.edit');
-Route::put('/services/{services}', [ServicesController::class, 'update'])->name('services.update');
-Route::delete('/services/{services}', [ServicesController::class, 'destroy'])->name('services.destroy');
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/{users}', [UserController::class, 'show'])->name('users.show');
-Route::get('/users/{users}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{users}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{users}', [UserController::class, 'destroy'])->name('users.destroy');
+// Cleaner Routes
+// Route::middleware(['auth', 'role:Cleaner'])->group(function () {
+Route::get('/cleaner/dashboard', [CleanerController::class, 'dashboard'])->name('cleaner.dashboard');
+Route::get('/cleaner/service', [CleanerController::class, 'index'])->name('cleaner.service.index');
+Route::post('/cleaner/order/{id}/update-status', [CleanerController::class, 'updateStatus'])->name('cleaner.order.updateStatus');
 
+Route::get('/cleaner/service/create', [CleanerController::class, 'createService'])->name('cleaner.services.create');
+Route::post('/cleaner/service', [CleanerController::class, 'storeService'])->name('cleaner.services.store');
+Route::get('/cleaner/service/{service}', [CleanerController::class, 'showService'])->name('cleaner.services.show');
+Route::get('/cleaner/service/{service_name}/edit', [CleanerController::class, 'editService'])->name('cleaner.services.edit');
+Route::put('/cleaner/service/{service}', [CleanerController::class, 'updateService'])->name('cleaner.services.update');
+Route::delete('/cleaner/service/{service_name}', [CleanerController::class, 'destroyService'])->name('cleaner.services.destroy');
+// });
+
+
+// User Routes
+// Route untuk dashboard pengguna
+Route::get('/user/dashboard', [ServiceController::class, 'dashboard'])->name('user.dashboard');
+// Route untuk melihat semua Service
+Route::get('/user/services', [ServiceController::class, 'services'])->name('user.services');
+Route::get('/user/service/{service}', [ServiceController::class, 'show'])->name('user.service.show');
+Route::get('/user/service', [ServiceController::class, 'index'])->name('user.service.index');
+
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Route::patch('/cleaner/orders/{order}/status', [CleanerController::class, 'updateStatus'])->name('cleaner.orders.status');
+
+// Route::get('/dashboard', [ServiceController::class, 'index'])->name('user.dashboard');
+Route::post('/newsletter/subscribe', [ServiceController::class, 'subscribeNewsletter'])->name('newsletter.subscribe');
+
+Route::get('/cleaner/dashboard', [CleanerController::class, 'index'])->name('cleaner.dashboard');
+Route::get('cleaner/service/create', [CleanerController::class, 'createService'])->name('cleaner.services.create');
+Route::post('cleaner/service/create', [CleanerController::class, 'storeService'])->name('cleaner.services.store');
+
+// Route::post('cleaner/service/store', [CleanerController::class, 'storeService'])->name('cleaner.services.store');
+// Route::get('/orders/create', [OrderController::class, 'create'])->name('user.order.create');
+// Route::get('user/order/create/{service_id}', [OrderController::class, 'create'])->name('user.order.create');
+
+Route::get('user/order/create', [OrderController::class, 'create'])->name('user.order.create');
+// Remove duplicate routes and keep only these
+Route::post('user/order/store', [OrderController::class, 'store'])->name('user.order.store');
+Route::get('payment/create', [PaymentController::class, 'create'])->name('payment.create');
+// Route::post('user/order/create', [OrderController::class, 'store'])->name('user.order.store');
+// Route::post('/order/store', [OrderController::class, 'store'])->name('user.order.store');
+Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
+Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
+Route::get('/payment/invoice/download/{id}', [PaymentController::class, 'downloadInvoice'])->name('payment.downloadInvoice');
+// Hapus semua route yang duplikat dan gunakan group untuk rute user
+Route::group(['middleware' => 'auth'], function () {
+    // Order routes
+    Route::get('user/order/create', [OrderController::class, 'create'])->name('user.order.create');
+    Route::post('user/order/store', [OrderController::class, 'store'])->name('user.order.store');
+
+    // Payment routes
+    Route::get('payment/create', [PaymentController::class, 'create'])->name('payment.create');
+    Route::post('payment/store', [PaymentController::class, 'store'])->name('payment.store');
+});
+
+
+// Route::middleware(['auth'])->group(function () {
+//     Route::prefix('user')->name('user.')->group(function () {
+//         // Order Routes
+//         Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+//         Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+//         Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+//         Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+//         Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+//     });
+// });

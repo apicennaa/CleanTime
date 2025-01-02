@@ -3,99 +3,85 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Services;
+use App\Models\Service;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Payment;
+use Carbon\Carbon;
 
-class ServicesController extends Controller
+class ServiceController extends Controller
 {
-    /**
-     * Menampilkan daftar layanan.
-     */
+    // Method untuk dashboard
+    public function dashboard()
+    {
+        $user = auth()->user();
+        $services = Service::latest()->take(5)->get();
+        foreach ($services as $service) {
+            $service->service_date = Carbon::parse($service->service_date);
+        }
+        $orders = Order::where('user_id', $user->id)
+            ->select('id', 'user_id', 'service_id', 'full_name', 'service_date', 'service_time', 'status')
+            ->with('service')
+            ->get();
+        $payments = Payment::whereIn('order_id', $orders->pluck('id'))
+            ->select('id', 'order_id', 'payment_method', 'payment_status')
+            ->get();
+
+        return view('user.dashboard', compact('user', 'services', 'orders', 'payments'));
+    }
+
+
+    // Method untuk melihat semua service
+    public function services()
+    {
+        $services = Service::all();
+        return view('user.dashboard', compact('services'));
+    }
+
     public function index()
     {
-        $services = Services::all();
-        $nav = 'Services List';
-        return view('services.index', compact('services', 'nav'));
+        $services = Service::where('cleaner_id', auth()->id())->get();
+        return view('service.index', compact('services'));
     }
 
-    /**
-     * Menampilkan form untuk menambahkan layanan baru.
-     */
-    public function create()
+
+    public function subscribeNewsletter(Request $request)
     {
-        $nav = 'Add New Service';
-        return view('services.create', compact('nav'));
+        $request->validate([
+            'email' => 'required|email|unique:newsletters,email'
+        ]);
+
+        // Add newsletter subscription logic here
+
+        return back()->with('success', 'Successfully subscribed to newsletter!');
     }
 
-    /**
-     * Menyimpan layanan baru ke database.
-     */
+    public function show($id)
+    {
+        $service = Service::findOrFail($id);
+        return view('user.service.show', compact('service'));
+    }
+
     public function store(Request $request)
     {
-        // Validasi data input
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
-            'price' => 'required|numeric|min:0',
+        $request->validate([
+            'service_name' => 'required|string|max:255',
+            'service_description' => 'required|string',
+            'service_price' => 'required|numeric',
+            'service_image' => 'required|image|max:2048',
         ]);
 
-        // Simpan layanan baru
-        Services::create($validatedData);
+        $service = new Service();
+        $service->service_name = $request->service_name;
+        $service->service_description = $request->service_description;
+        $service->service_price = $request->service_price;
+        $service->cleaner_id = auth()->id();
+        if ($request->hasFile('service_image')) {
+            $path = $request->file('service_image')->store('services');
+            $service->service_image = $path;
+        }
+        $service->save();
 
-        return redirect()->route('services.index')->with('success', 'Service has been added successfully.');
-    }
-
-    /**
-     * Menampilkan detail layanan tertentu.
-     */
-    public function show(string $id)
-    {
-        $service = Services::findOrFail($id);
-        $nav = 'Service Details - ' . $service->nama;
-        return view('services.show', compact('service', 'nav'));
-    }
-
-    /**
-     * Menampilkan form untuk mengedit layanan.
-     */
-    public function edit(string $id)
-    {
-        $service = Services::findOrFail($id);
-        $nav = 'Edit Service - ' . $service->nama;
-        return view('services.edit', compact('service', 'nav'));
-    }
-
-    /**
-     * Memperbarui data layanan di database.
-     */
-    public function update(Request $request, string $id)
-    {
-        // Temukan layanan berdasarkan ID
-        $service = Services::findOrFail($id);
-
-        // Validasi data input
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
-            'price' => 'required|numeric|min:0',
-        ]);
-
-        // Update data layanan
-        $service->update($validatedData);
-
-        return redirect()->route('services.index')->with('success', 'Service has been updated successfully.');
-    }
-
-    /**
-     * Menghapus layanan dari database.
-     */
-    public function destroy(string $id)
-    {
-        // Temukan layanan berdasarkan ID
-        $service = Services::findOrFail($id);
-
-        // Hapus layanan
-        $service->delete();
-
-        return redirect()->route('services.index')->with('success', 'Service has been deleted successfully.');
+        return redirect()->route('cleaner.dashboard')->with('success', 'Service added successfully!');
     }
 }
