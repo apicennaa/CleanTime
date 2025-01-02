@@ -8,16 +8,8 @@
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('images/logo.png') }}" alt="CleanTime" class="h-8">
+                            <img src="{{ asset('image/logo.png') }}" alt="CleanTime" class="h-8">
                         </a>
-                    </div>
-
-                    <div class="flex items-center gap-6">
-                        <a href="{{ route('home') }}" class="text-gray-700">HOME</a>
-                        <a href="#" class="text-gray-700">ABOUT US</a>
-                        <a href="#" class="text-gray-700">SERVICES</a>
-                        <a href="#" class="text-gray-700">PRICING</a>
-                        <a href="#" class="text-gray-700">CONTACT</a>
                     </div>
                 </div>
             </div>
@@ -113,7 +105,7 @@
         <footer class="bg-gray-900 text-white mt-16">
             <div class="container mx-auto px-4 py-8">
                 <div class="text-center">
-                    <p>© 2024, All Rights Reserved</p>
+                    <p>© 2024, Kelompok 2.</p>
                 </div>
             </div>
         </footer>

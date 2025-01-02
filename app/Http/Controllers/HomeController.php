@@ -10,22 +10,22 @@ class HomeController extends Controller
     {
         $services = [
             [
-                'icon' => 'images/house.png',
+                'icon' => 'image/house.png',
                 'name' => 'House Cleaning',
                 'description' => 'Professional house cleaning services tailored to your needs.'
             ],
             [
-                'icon' => 'images/office.png',
+                'icon' => 'image/office.png',
                 'name' => 'Office Cleaning',
                 'description' => 'Keep your workspace clean and productive.'
             ],
             [
-                'icon' => 'images/deep.png',
+                'icon' => 'image/deep.png',
                 'name' => 'Deep Cleaning',
                 'description' => 'Thorough cleaning service for a spotless environment.'
             ],
             [
-                'icon' => 'images/ac.png',
+                'icon' => 'image/ac.png',
                 'name' => 'AC Cleaning',
                 'description' => 'Regular maintenance your air conditioner to keep your space clean.'
             ]
@@ -33,17 +33,17 @@ class HomeController extends Controller
     
         $testimonials = [
             [
-                'image' => 'images/say1.png',
+                'image' => 'image/say1.png',
                 'name' => 'Jefri Nichol',
                 'text' => 'Excellent service! My house has never been cleaner.'
             ],
             [
-                'image' => 'images/say2.png',
+                'image' => 'image/say2.png',
                 'name' => 'Natasha Rizky',
                 'text' => 'Very professional and thorough. Highly recommended!'
             ],
             [
-                'image' => 'images/say3.png',
+                'image' => 'image/say3.png',
                 'name' => 'Jackson Kamela',
                 'text' => 'Great attention to detail and friendly staff.'
             ]

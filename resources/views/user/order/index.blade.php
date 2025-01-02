@@ -7,17 +7,15 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <img src="{{ asset('images/logo.png') }}" alt="CleanTime" class="h-8">
+                    <img src="{{ asset('image/logo.png') }}" alt="CleanTime" class="h-8">
                 </div>
-                
-                <div class="flex items-center gap-6">
-                    <a href="#" class="text-gray-700">HOME</a>
-                    <a href="#" class="text-gray-700">ABOUT US</a>
-                    <a href="#" class="text-gray-700">SERVICES</a>
-                    <a href="#" class="text-gray-700">PRICING</a>
-                    <a href="#" class="text-gray-700">CONTACT</a>
-                    <button class="bg-teal-500 text-white px-4 py-2 rounded-md">Let's Talk</button>
-                </div>
+                <div class="flex items-center gap-4">
+                    {{-- Logout Button --}}
+                   <form method="POST" action="{{ route('logout') }}">
+                   @csrf
+                   <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-md">Logout</button>
+                   </form>
+               </div>
             </div>
         </div>
     </nav>
@@ -51,7 +49,7 @@
             </div>
             @endforeach
         </div>
-
+{{-- 
         <!-- Newsletter Section -->
         <div class="bg-teal-600 rounded-lg mt-16 p-8 text-white relative overflow-hidden">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -68,7 +66,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <!-- Footer -->
@@ -103,7 +101,7 @@
                 </div>
             </div>
             <div class="text-center mt-8 pt-8 border-t border-gray-800">
-                <p>© 2024, All Rights Reserved</p>
+                <p>© 2024, Kelompok 2.</p>
             </div>
         </div>
     </footer>

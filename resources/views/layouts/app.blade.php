@@ -67,7 +67,7 @@
                 <div class="flex justify-between items-center">
                     <!-- Logo -->
                     <div class="flex items-center logo-hover">
-                        <img src="{{ asset('images/logo.svg') }}" alt="CleanTime Logo" class="h-8">
+                        <img src="{{ asset('image/logo.svg') }}" alt="CleanTime Logo" class="h-8">
                         {{-- <span class="text-cyan-500 text-2xl font-semibold ml-2">CleanTime</span> --}}
                     </div>
 

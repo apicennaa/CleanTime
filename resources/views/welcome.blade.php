@@ -54,7 +54,7 @@
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand logo-hover" href="#">
-                <img src="{{ asset('images/logo.svg') }}" alt="CleanTime Logo" class="h-8">
+                <img src="{{ asset('image/logo.svg') }}" alt="CleanTime Logo" class="h-8">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                <p>&copy; {{ date('Y') }} CleanTime. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} CleanTime. Kelompok 2.</p>
             </div>
         </div>
     </footer>

@@ -36,19 +36,5 @@
             Update Service
         </button>
     </form>
-
-    <div class="newsletter mt-8 bg-teal-600 text-white p-6 rounded-lg grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="newsletter-content">
-            <h2 class="text-xl font-bold">Stay Updated</h2>
-            <p>Subscribe to our newsletter for the latest updates and tips!</p>
-            <div class="newsletter-form flex mt-4">
-                <input type="email" placeholder="Enter your email" class="p-3 rounded-l-lg flex-1 border-none">
-                <button class="bg-gray-800 text-white px-6 rounded-r-lg">Subscribe</button>
-            </div>
-        </div>
-        <div class="newsletter-image">
-            <img src="/api/placeholder/400/300" alt="Newsletter" class="w-full h-auto rounded-lg">
-        </div>
-    </div>
 </div>
 @endsection

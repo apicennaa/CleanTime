@@ -25,7 +25,7 @@
             
             <!-- Right Image -->
             <div class="w-1/2 animate-[fadeIn_1.5s_ease-out]">
-                <img src="{{ asset('images/cleaner.png') }}" alt="Professional Cleaner" class="w-80 h-auto mx-auto mb-16">
+                <img src="{{ asset('image/cleaner.png') }}" alt="Professional Cleaner" class="w-80 h-auto mx-auto mb-16">
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="md:w-1/3">
-                <img src="{{ asset('images/promotion.jpg') }}" alt="Promotion" class="w-full h-full object-cover">
+                <img src="{{ asset('image/promotion.jpg') }}" alt="Promotion" class="w-full h-full object-cover">
             </div>
             <div class="md:w-2/3 p-8">
                 <h2 class="text-3xl font-bold mb-4">15% Off For Our New Clients</h2>

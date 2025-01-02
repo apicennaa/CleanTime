@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CleanerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -82,14 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('payment/store', [PaymentController::class, 'store'])->name('payment.store');
 });
 
-
-// Route::middleware(['auth'])->group(function () {
-//     Route::prefix('user')->name('user.')->group(function () {
-//         // Order Routes
-//         Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-//         Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
-//         Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-//         Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
-//         Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
-//     });
-// });
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');

@@ -18,16 +18,11 @@
             <div class="container mx-auto px-4">
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center">
-                        <img src="{{ asset('images/logo.png') }}" alt="CleanTime" class="h-8">
+                        <img src="{{ asset('image/logo.png') }}" alt="CleanTime" class="h-8">
                     </div>
-
                     <div class="flex items-center gap-4">
-                        <a href="#" class="text-gray-700">HOME</a>
-                        <a href="#" class="text-gray-700">ORDER DETAIL</a>
-                        <a href="#" class="text-gray-700">CONTACT</a>
-
-                        {{-- Logout Button --}}
-                        {{-- <form method="POST" action="{{ route('logout') }}"> --}}
+                         {{-- Logout Button --}}
+                        <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-md">Logout</button>
                         </form>
@@ -153,36 +148,6 @@
                     </div>
                 @endif
             </div>
-
-            {{-- <!-- Update Status Modal -->
-    <div id="statusModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-            <div class="mt-3 text-center">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">Update Order Status</h3>
-                <div class="mt-2 px-7 py-3">
-                    <form id="updateStatusForm" method="POST">
-                        @csrf
-                        @method('PATCH')
-                        <select name="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                            <option value="pending">Pending</option>
-                            <option value="in_progress">In Progress</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                        <div class="mt-4 flex justify-end">
-                            <button type="button" onclick="closeModal()"
-                                class="mr-2 px-4 py-2 bg-gray-300 text-gray-800 rounded-md">
-                                Cancel
-                            </button>
-                            <button type="submit"
-                                class="px-4 py-2 bg-teal-500 text-white rounded-md">
-                                Update
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
             <!-- Add Service Button -->
             <div class="flex justify-center items-center">
                 <a href="{{ route('cleaner.services.create') }}"
@@ -214,44 +179,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection
-{{-- @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <h1>Your Services</h1>
-    <a href="{{ route('cleaner.services.create') }}" class="btn btn-primary mb-3">Add New Service</a>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($services as $service)
-            <tr>
-                <td><img src="{{ asset('storage/' . $service->service_image) }}" alt="Service Image" width="100"></td>
-                <td>{{ $service->service_name }}</td>
-                <td>{{ $service->service_description }}</td>
-                <td>${{ $service->service_price }}</td>
-                <td>
-                    <a href="{{ route('cleaner.services.edit', $service) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('cleaner.services.delete', $service) }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-@endsection --}}

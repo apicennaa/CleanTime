@@ -17,17 +17,17 @@ class CleanerController extends Controller
         // Data testimonial (tetap menggunakan data statis)
         $testimonials = [
             [
-                'image' => 'images/say1.png',
+                'image' => 'image/say1.png',
                 'name' => 'Jefri Nichol',
                 'text' => 'Excellent service! My house has never been cleaner.'
             ],
             [
-                'image' => 'images/say2.png',
+                'image' => 'image/say2.png',
                 'name' => 'Natasha Rizky',
                 'text' => 'Very professional and thorough. Highly recommended!'
             ],
             [
-                'image' => 'images/say3.png',
+                'image' => 'image/say3.png',
                 'name' => 'Jackson Kamela',
                 'text' => 'Great attention to detail and friendly staff.'
             ]

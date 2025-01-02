@@ -8,16 +8,11 @@
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center">
-                <img src="{{ asset('images/logo.png') }}" alt="CleanTime" class="h-8">
+                <img src="{{ asset('image/logo.png') }}" alt="CleanTime" class="h-8">
             </div>
-
             <div class="flex items-center gap-4">
-                <a href="#" class="text-gray-700">HOME</a>
-                <a href="#" class="text-gray-700">ORDER DETAIL</a>
-                <a href="#" class="text-gray-700">CONTACT</a>
-
                 {{-- Logout Button --}}
-                {{-- <form method="POST" action="{{ route('logout') }}"> --}}
+                <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-md">Logout</button>
                 </form>

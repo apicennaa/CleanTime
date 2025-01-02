@@ -17,21 +17,18 @@
             <div class="container mx-auto px-4">
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center">
-                        <img src="{{ asset('images/logo.png') }}" alt="CleanTime" class="h-8">
+                        <img src="{{ asset('image/logo.png') }}" alt="CleanTime" class="h-8">
                     </div>
-
-                    <div class="flex items-center gap-6">
-                        <a href="#" class="text-gray-700">HOME</a>
-                        <a href="#" class="text-gray-700">ABOUT US</a>
-                        <a href="#" class="text-gray-700">SERVICES</a>
-                        <a href="#" class="text-gray-700">PRICING</a>
-                        <a href="#" class="text-gray-700">CONTACT</a>
-                        <button class="bg-teal-500 text-white px-4 py-2 rounded-md">Let's Talk</button>
-                    </div>
+                    <div class="flex items-center gap-4">
+                        {{-- Logout Button --}}
+                       <form method="POST" action="{{ route('logout') }}">
+                       @csrf
+                       <button type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-md">Logout</button>
+                       </form>
+                   </div>
                 </div>
             </div>
         </nav>
-
         <!-- Services Section -->
         <div class="container mx-auto px-4 py-12">
             <div class="text-center mb-12">
@@ -65,26 +62,6 @@
                     </div>
                 @endforeach
             </div>
-
-            <!-- Newsletter Section -->
-            <div class="bg-teal-600 rounded-lg mt-16 p-8 text-white relative overflow-hidden">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <h2 class="text-2xl font-bold mb-4">Subscribe To Our News Letter</h2>
-                        <p class="mb-6">Subscribe Our News Letter To Get Latest News And Updates</p>
-                        <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex">
-                            @csrf
-                            <input type="email" name="email" placeholder="Enter Your Email"
-                                class="flex-1 px-4 py-2 rounded-l-md text-gray-700">
-                            <button type="submit" class="bg-teal-800 px-6 py-2 rounded-r-md hover:bg-teal-700">
-                                →
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
             <!-- Tabel Data Orders -->
             <div class="mt-16">
                 <h2 class="text-xl font-bold mb-4">Order History</h2>
@@ -163,7 +140,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-8 pt-8 border-t border-gray-800">
-                    <p>© 2024, All Rights Reserved</p>
+                    <p>© 2024, Kelompok 2.</p>
                 </div>
             </div>
         </footer>

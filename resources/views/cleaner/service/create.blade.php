@@ -116,58 +116,24 @@
             background: #2bbbad;
         }
 
-        .newsletter {
-            margin-top: 4rem;
-            background: #00796b;
-            padding: 2rem;
-            border-radius: 10px;
-            color: white;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-            width: 100%;
+        img.h-8 {
+            max-width: 100%;
+            height: 50px;
+            width: 150px;
+            object-fit: cover;
         }
 
-        .newsletter-content h2 {
-            margin-bottom: 1rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            margin-top: 1rem;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 5px 0 0 5px;
-        }
-
-        .newsletter-form button {
-            background: #333;
-            color: white;
-            border: none;
-            padding: 0 1rem;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
+        .h-8 {
+            max-block-size: max-content;
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="{{ asset('images/logo.svg') }}" alt="CleanTime Logo" class="h-8">
+            <img src="{{ asset('image/logo.svg') }}" alt="CleanTime Logo" class="h-8">
         </div>
-        <div class="nav-links">
-            <a href="#">HOME</a>
-            <a href="#">ORDER DETAIL</a>
-            <a href="#">CONTACT</a>
-        </div>
-        <a href="#" class="lets-talk-btn">Let's Talk</a>
     </nav>
-
     <div class="container">
         <h1>Expand Your Service Offerings</h1>
         <form class="service-form" action="{{ route('cleaner.services.store') }}" method="POST" enctype="multipart/form-data">
@@ -197,20 +163,6 @@
                 Submit New Service
             </button>
         </form>
-
-        <div class="newsletter">
-            <div class="newsletter-content">
-                <h2>Subscribe To Our News Letter</h2>
-                <p>Subscribe Our News Letter To Get Latest News And Updates</p>
-                <div class="newsletter-form">
-                    <input type="email" placeholder="Enter Your Email">
-                    <button>➡️</button>
-                </div>
-            </div>
-            <div class="newsletter-image">
-                <img src="/api/placeholder/400/300" alt="Cleaning Service" style="max-width: 100%; height: auto;">
-            </div>
-        </div>
     </div>
 </body>
 </html>

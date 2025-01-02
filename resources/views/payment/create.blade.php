@@ -20,7 +20,7 @@
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center">
                         <a href="{{ route('home') }}" class="mx-auto">
-                            <img src="{{ asset('images/logo.png') }}" alt="CleanTime" class="h-8 mx-auto">
+                            <img src="{{ asset('image/logo.png') }}" alt="CleanTime" class="h-8">
                         </a>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
         <footer class="bg-gray-900 text-white mt-16">
             <div class="container mx-auto px-4 py-8">
                 <div class="text-center">
-                    <p>© 2024, All Rights Reserved</p>
+                    <p>© 2024, Kelompok 2.</p>
                 </div>
             </div>
         </footer>
